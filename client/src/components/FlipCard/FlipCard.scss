@@ -1,0 +1,62 @@
+@import '../../scss-variables.scss';
+@import '../../scss-mixin.scss';
+
+.flip-card {
+  --margin: 4px;
+  height: calc(100vw / 4 - var(--margin) * 3);
+  width: calc(100vw / 4 - var(--margin) * 3);
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--margin);
+  // cursor: pointer;
+  perspective: 1000px;
+}
+
+.flip-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  @include easeOut;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card__inner,
+.flip-card:active .flip-card__inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card__front,
+.flip-card__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: ibm-semi-bold;
+}
+
+.flip-card__front {
+  background-color: lighten($primary-color, 75%);
+  color: black;
+}
+
+.flip-card__back {
+  background-color: lighten($primary-color, 25%);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+@include sm {
+  .flip-card {
+    width: 150px;
+    height: 150px;
+  }
+}

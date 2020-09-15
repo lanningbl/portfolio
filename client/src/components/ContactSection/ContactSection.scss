@@ -1,0 +1,314 @@
+@import '../../scss-variables.scss';
+@import '../../scss-mixin.scss';
+
+.contact {
+  background: $primary-color;
+  // background-color: $secondary-color;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  scroll-snap-align: center;
+  padding: 120px 5% 80px 5%;
+  display: grid;
+  grid-template-areas: 'title';
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 4px;
+  clip-path: polygon(50% 40px, 100% 0, 100% 100%, 0 100%, 0 0);
+}
+
+.contact__title {
+  color: $secondary-color;
+  font-family: ibm-semi-bold;
+  font-size: 35px;
+  grid-area: title;
+  justify-self: center;
+  margin-bottom: 30px;
+
+  &::after {
+    content: '';
+    border: 2px solid $secondary-color;
+    width: 66%;
+    border-radius: 4px;
+    display: block;
+    margin: 16px auto 0 auto;
+  }
+}
+
+.form {
+  display: grid;
+  grid-template-areas:
+    'name-input'
+    'email-input'
+    'textarea'
+    'submit';
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 4px;
+}
+
+.form-control {
+  position: relative;
+
+  &.email {
+    grid-area: email-input;
+  }
+
+  &.name {
+    grid-area: name-input;
+  }
+
+  input {
+    font-size: 14px;
+    width: 100%;
+    height: 48px;
+    box-sizing: border-box;
+    color: $secondary-color;
+    background-color: lighten($primary-color, 5%);
+    border: 1px solid $secondary-color;
+    border-radius: 3px;
+    padding: 12px 12px 0 12px;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: lighten($primary-color, 8%);
+      border-color: $accent-color;
+    }
+  }
+
+  .input-valid {
+    border-color: darken($accent-color, 20%);
+
+    &:focus-within,
+    &:hover {
+      border-color: darken($accent-color, 20%);
+    }
+  }
+
+  label {
+    font-family: ibm-bold;
+    color: #a5a5a5;
+    font-size: 10px;
+    position: absolute;
+    pointer-events: none;
+    left: 12px;
+    top: 20px;
+    text-transform: uppercase;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+  }
+
+  input:focus ~ label,
+  input:hover ~ label,
+  textarea:focus ~ label,
+  textarea:hover ~ label,
+  .label-rise {
+    top: 10px;
+    font-size: 8px;
+  }
+}
+
+textarea {
+  border: 1px solid $secondary-color;
+  font-family: ibm-regular;
+  border-radius: 3px;
+  background-color: lighten($primary-color, 5%);
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  height: 150px;
+  padding: 16px 12px;
+  width: 100%;
+  word-break: break-word;
+  grid-area: textarea;
+  margin: 0;
+  color: $secondary-color;
+  // overflow-y: hidden;
+  resize: none;
+
+  &:focus-within,
+  &:hover {
+    border-color: $accent-color;
+    background-color: lighten($primary-color, 8%);
+  }
+}
+
+.textarea-valid {
+  border-color: darken($accent-color, 20%);
+
+  &:focus-within,
+  &:hover {
+    border-color: darken($accent-color, 20%);
+  }
+}
+
+.message-length {
+  font-family: ibm-bold;
+  color: #a5a5a5;
+  font-size: 10px;
+  position: absolute;
+  pointer-events: none;
+  bottom: 10px;
+  right: 10px;
+}
+
+.form-actions {
+  grid-area: submit;
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .tooltip {
+    position: relative;
+
+    &::before,
+    &::after {
+      --scale: 0;
+      --arrow-size: 6px;
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -0.25rem;
+      transform: translateX(var(--translate-x, 0)) translateY(-50%)
+        scale(var(--scale));
+      transition: 200ms transform;
+      transform-origin: right center;
+    }
+
+    &::before {
+      --translate-x: calc(-100% - var(--arrow-size));
+      content: attr(data-tooltip);
+      color: white;
+      font-family: ibm-semi-bold;
+      font-size: 14px;
+      width: max-content;
+      // max-width: 100%;
+      text-align: center;
+      border-radius: 4px;
+      padding: 0.5rem;
+      background: lighten($primary-color, 10%);
+    }
+
+    &::after {
+      --translate-x: calc(-1 * var(--arrow-size));
+      transform-origin: left center;
+      content: '';
+      border: var(--arrow-size) solid transparent;
+      border-left-color: lighten($primary-color, 10%);
+    }
+
+    &:hover::before,
+    &:hover::after,
+    &:active::before,
+    &:active::after {
+      --scale: 1;
+    }
+  }
+}
+
+.errors-visible {
+  cursor: pointer;
+  margin-right: 5px;
+  color: lighten($primary-color, 80%);
+
+  &:hover {
+    color: lighten($primary-color, 60%);
+  }
+}
+
+.errors-hidden {
+  color: lighten($primary-color, 30%);
+  margin-right: 5px;
+  cursor: pointer;
+
+  &:hover {
+    color: lighten($primary-color, 40%);
+  }
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $accent-color;
+  border-radius: 3px;
+  height: 48px;
+  color: $primary-color;
+  border: 3px solid darken($accent-color, 10%);
+  width: 100%;
+  width: 150px;
+  box-sizing: border-box;
+  font-family: ibm-bold;
+  font-size: 14px;
+  cursor: pointer;
+  grid-area: submit;
+  justify-self: flex-end;
+  @include easeOut;
+  @include no-select;
+
+  .spin {
+    font-size: 20px;
+    -webkit-animation: icon-spin 2s infinite linear;
+    animation: icon-spin 2s infinite linear;
+  }
+
+  @-webkit-keyframes icon-spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+  }
+
+  @keyframes icon-spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+  }
+}
+
+.btn-enabled {
+  &:hover,
+  &:active {
+    font-size: 13px;
+    border-color: darken($accent-color, 25%);
+    background-color: lighten($accent-color, 25%);
+  }
+}
+
+.btn-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.validation-label {
+  font-family: ibm-bold;
+  color: #a5a5a5;
+  font-size: 10px;
+  position: absolute;
+  pointer-events: none;
+  top: 8px;
+  right: 10px;
+}
+
+@include md {
+  .contact {
+    // width: 500px;
+    padding: 150px calc(50% - 250px) 100px calc(50% - 250px);
+    clip-path: polygon(50% 75px, 100% 0, 100% 100%, 0 100%, 0 0);
+
+    &__title {
+      font-size: 40px;
+    }
+  }
+}

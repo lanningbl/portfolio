@@ -1,0 +1,183 @@
+@import '../../scss-variables.scss';
+@import '../../scss-mixin.scss';
+
+#home {
+  overflow: hidden;
+}
+
+.home-section {
+  align-items: center;
+  background: $primary-color;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.home-section__btn {
+  align-items: center;
+  animation: display-btn 3s 4s ease forwards;
+  border: 2px solid $accent-color;
+  border-radius: 4px;
+  box-shadow: -1px 1px 2px $secondary-color, 1px 1px 2px $secondary-color;
+  color: $secondary-color;
+  cursor: pointer;
+  display: flex;
+  font-family: ibm-semi-bold;
+  font-size: 1.3rem;
+  opacity: 0;
+  padding: 10px 24px;
+  transition-duration: 0.5s;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+
+  .arrow {
+    border: solid $secondary-color;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    height: 3px;
+    margin-left: 20px;
+    padding: 3px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transition-duration: 0.5s;
+    width: 3px;
+  }
+
+  &:hover,
+  &:active {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+    box-shadow: -4px 4px 12px $accent-color, 4px 4px 12px $accent-color;
+    color: $primary-color;
+    overflow: visible;
+    transform: translateY(-4px);
+    transition-duration: 0.5s;
+
+    &:hover::after {
+      content: '';
+      height: calc(100% + 6px);
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    .arrow {
+      border-color: $primary-color;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+    }
+  }
+}
+
+@keyframes display-btn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*
+
+
+
+  Title / Subtitle styles + animations 
+
+
+
+*/
+
+#home__title {
+  animation: fill 2s ease forwards 2.3s;
+  height: fit-content;
+  margin-bottom: 20px;
+  max-width: 90%;
+
+  path {
+    stroke: $secondary-color;
+    stroke-width: 2px;
+  }
+}
+
+// Hello, I'm Brady Lanning.
+$title: 268px 258px 120px 120px 217px 53px 114px 47px 335px 306px 124px 254px
+  281px 215px 149px 254px 212px 212px 120px 212px 347px 28px;
+$delay: 0.04s;
+$count: 1;
+
+@each $character in $title {
+  #home__title path:nth-child(#{$count}) {
+    // Brady Lanning
+    @if $count >= 10 and $count <= 21 {
+      animation: line-animation 1.5s ease-in forwards $delay * $count,
+        fill-name 2s ease forwards 2.3s;
+    } @else {
+      animation: line-animation 1.5s ease-in forwards $delay * $count;
+    }
+    stroke-dasharray: #{$character};
+    stroke-dashoffset: #{$character};
+  }
+  $count: $count + 1;
+}
+
+#home__subtitle {
+  animation: fill 2s ease forwards 3.8s;
+  height: fit-content;
+  margin-bottom: 20px;
+  max-width: 85%;
+
+  path {
+    stroke: $secondary-color;
+    stroke-width: 2px;
+  }
+}
+
+// I'm a Full Stack Developer
+$subtitle: 101px 42px 298px 226px 172px 188px 107px 107px 220px 140px 226px
+  178px 208px 255px 230px 158px 230px 107px 193px 259px 230px 110px 25px;
+$count: 1;
+
+@each $character in $subtitle {
+  #home__subtitle path:nth-child(#{$count}) {
+    animation: line-animation 1.5s ease-in forwards $delay * $count + 1.5s;
+    stroke-dasharray: #{$character};
+    stroke-dashoffset: #{$character};
+  }
+  $count: $count + 1;
+}
+
+@keyframes line-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fill {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: $secondary-color;
+    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+  }
+}
+
+@keyframes fill-name {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: $secondary-color;
+    stroke: $accent-color;
+  }
+}

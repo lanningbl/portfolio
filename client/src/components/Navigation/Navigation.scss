@@ -1,0 +1,282 @@
+@import '../../scss-variables.scss';
+@import '../../scss-mixin.scss';
+
+.menu-btn {
+  position: fixed;
+  z-index: 3;
+  right: 35px;
+  top: 30px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .btn-line {
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px $primary-color;
+    transition: all 0.5s ease-in-out;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 3px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0px 5px $primary-color;
+      transition: all 0.5s ease-in-out;
+    }
+
+    &::before {
+      transform: translateY(-10px);
+    }
+
+    &::after {
+      transform: translateY(10px);
+    }
+  }
+
+  &.close {
+    .btn-line {
+      transform: translateX(-50px);
+      background: transparent;
+      box-shadow: none;
+      pointer-events: none;
+
+      &::before {
+        transform: rotate(45deg) translate(35px, -35px);
+      }
+      &::after {
+        transform: rotate(-45deg) translate(35px, 35px);
+      }
+    }
+  }
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  visibility: hidden;
+  z-index: 2;
+  height: 100vh;
+
+  &.show {
+    visibility: visible;
+  }
+
+  &-branding,
+  &-nav {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    float: left;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 60%;
+    justify-content: start;
+    @include easeOut;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      left: 0px;
+      height: 100%;
+      background: darken($primary-color, 5);
+      z-index: -1;
+      opacity: 0.9;
+      transform: translate3d(-100%, 0, 0);
+      @include easeOut;
+    }
+
+    &.show {
+      &::before {
+        transform: translate3d(0, 0, 0);
+      }
+      &::after {
+        transform: translate3d(0, 0, 0);
+      }
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  &-branding {
+    @include easeOut;
+    justify-content: center;
+    height: 40%;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      left: 0px;
+      height: 50vh;
+      background: darken($primary-color, 5);
+      z-index: -1;
+      opacity: 0.9;
+      transform: translate3d(-100%, 0, 0);
+      @include easeOut;
+    }
+
+    &.show {
+      &::before {
+        transform: translate3d(0, 0, 0);
+      }
+      &::after {
+        transform: translate3d(0, 0, 0);
+      }
+      transform: translate3d(0, 0, 0);
+    }
+
+    .menu-portrait {
+      width: 200px;
+      height: 200px;
+      background-image: url('../../assets/img/brady.png');
+      border-radius: 50%;
+      border: solid 3px $secondary-color;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transform: translate3d(-600px, 0, 0);
+      @include easeOut;
+
+      &.show {
+        transform: translate3d(0, 0, 0);
+        transition-delay: 0.25s;
+      }
+    }
+  }
+
+  .nav-item {
+    transform: translate3d(600px, 0, 0);
+
+    @include easeOut;
+
+    &.show {
+      // Slide in from right
+      transform: translate3d(0, 0, 0);
+    }
+
+    &.current > a {
+      color: $secondary-color;
+    }
+  }
+
+  .nav-link {
+    // display: inline-block;
+    // position: relative;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 1rem 0;
+    // font-weight: 300;
+    display: block;
+    color: $secondary-color;
+    text-decoration: none;
+    @include easeOut;
+    text-shadow: 1px 1px 1px $accent-color;
+
+    &:hover,
+    &:active {
+      color: $primary-color;
+      text-shadow: 0px 0px 2px $accent-color, 0px 0px 4px $secondary-color;
+      @include no-select;
+    }
+
+    &::after {
+      content: (attr(data-hover));
+    }
+
+    &:hover::after {
+      content: '';
+    }
+  }
+}
+
+@for $x from 1 through 5 {
+  .nav-item:nth-child(#{$x}) {
+    transition-delay: 0s;
+
+    &.show {
+      transition-delay: $x * 0.1s;
+    }
+  }
+}
+
+@include md {
+  .menu {
+    &-branding,
+    &-nav {
+      width: 50%;
+      height: 100vh;
+    }
+
+    &-nav {
+      justify-content: center;
+
+      &::before {
+        transform: translate3d(0, -100%, 0);
+        height: 50vh;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        height: 50vh;
+        background: darken($primary-color, 5);
+        z-index: -1;
+        opacity: 0.9;
+        transform: translate3d(100%, 0, 0);
+        @include easeOut;
+      }
+    }
+
+    &-branding {
+      &::before {
+        background: darken($primary-color, 2);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+        height: 50vh;
+        background: darken($primary-color, 2);
+        z-index: -1;
+        opacity: 0.9;
+        transform: translate3d(0, 100%, 0);
+        @include easeOut;
+      }
+    }
+
+    .menu-portrait {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+  .nav-link {
+    width: 400px;
+    text-align: center;
+  }
+}
