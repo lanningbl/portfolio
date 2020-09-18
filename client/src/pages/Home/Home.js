@@ -1,22 +1,20 @@
 import React from 'react';
 
 import './Home.scss';
-import HomeSection from '../../components/HomeSection';
-import AboutSection from '../../components/AboutSection';
-import SkillSection from '../../components/SkillSection';
-import ProjectSection from '../../components/ProjectSection';
-import ContactSection from '../../components/ContactSection';
-import FooterSection from '../../components/FooterSection';
+import Hero from 'components/sections/Hero';
+import About from 'components/sections/About';
+import Skill from 'components/sections/Skill';
+import Project from 'components/sections/Project';
+import Contact from 'components/sections/Contact';
 
 const Home = () => {
   return (
     <>
-      <HomeSection />
-      <AboutSection />
-      <SkillSection />
-      <ProjectSection />
-      <ContactSection />
-      <FooterSection />
+      <Hero />
+      <About />
+      <Skill />
+      <Project />
+      <Contact />
     </>
   );
 };

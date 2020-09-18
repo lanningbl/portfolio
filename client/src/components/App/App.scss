@@ -1,0 +1,7 @@
+@import 'styles/main';
+
+.app {
+  background-color: $secondary-color;
+  scroll-snap-type: y mandatory;
+  overflow-x: hidden;
+}
