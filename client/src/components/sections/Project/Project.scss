@@ -56,7 +56,6 @@
   height: 250px;
   width: 250px;
   color: $secondary-color;
-  cursor: pointer;
   display: flex;
   font-family: ibm-semi-bold;
   font-size: 1.6rem;
@@ -93,12 +92,12 @@
 
 .img-label {
   height: 50px;
-  width: 100%;
   background-color: darken($primary-color, 2%);
   border-top: $secondary-color;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
 }
 
 .github-icon {

@@ -33,6 +33,7 @@ function Project() {
             />
           </a>
           <div className='img-label'>
+            Calendar
             <a
               href='https://github.com/lanningbl/calendar'
               target='_blank'
