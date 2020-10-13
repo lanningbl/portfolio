@@ -9,17 +9,10 @@ function Project() {
 
   return (
     <div className='project' id='project'>
-      <div
-        className={`project__title ${
-          visible ? 'fade-in-right' : 'fade-out-right'
-        }`}
-      >
+      <div className={`project__title ${visible ? 'fade-in-right' : 'fade-out-right'}`}>
         My Projects
       </div>
-      <div
-        className={`projects ${visible ? 'fade-in-left' : 'fade-out-left'}`}
-        ref={setRef}
-      >
+      <div className={`projects ${visible ? 'fade-in-left' : 'fade-out-left'}`} ref={setRef}>
         <div className='project-card'>
           <a
             href='https://brady-mern-calendar.herokuapp.com'
@@ -39,6 +32,25 @@ function Project() {
               target='_blank'
               rel='noopener noreferrer'
             >
+              <FaGithub className='github-icon' />
+            </a>
+          </div>
+        </div>
+        <div className='project-card'>
+          <a
+            href='https://brady-social-media.firebaseapp.com/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <img
+              className='project-img'
+              src={require('assets/img/social-media-app.png')}
+              alt='calendar app'
+            />
+          </a>
+          <div className='img-label'>
+            Social Media
+            <a href='https://github.com/lanningbl' target='_blank' rel='noopener noreferrer'>
               <FaGithub className='github-icon' />
             </a>
           </div>
