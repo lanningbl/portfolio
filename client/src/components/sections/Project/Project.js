@@ -55,6 +55,29 @@ function Project() {
             </a>
           </div>
         </div>
+        <div className='project-card'>
+          <a
+            href='https://brady-shopping-cart-app.firebaseapp.com/'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <img
+              className='project-img'
+              src={require('assets/img/shopping-cart-app.png')}
+              alt='calendar app'
+            />
+          </a>
+          <div className='img-label'>
+            Shopping Cart
+            <a
+              href='https://github.com/lanningbl/shopping-cart'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <FaGithub className='github-icon' />
+            </a>
+          </div>
+        </div>
         {/* <div className='project-card'>2</div>
         <div className='project-card'>3</div>
         <div className='project-card'>4</div> */}
